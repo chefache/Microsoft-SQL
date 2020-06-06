@@ -14,3 +14,9 @@ SELECT EmployeeID, FirstName, LastName, d.Name FROM Employees AS e
 JOIN Departments AS d ON d.DepartmentID = E.DepartmentID
 WHERE d.Name = 'Sales'
 ORDER BY EmployeeID ASC
+
+-- 4.Employee Departments
+SELECT TOP(5) EmployeeID, FirstName, Salary, d.Name FROM Employees AS e
+JOIN Departments AS d ON d.DepartmentID = e.DepartmentID
+WHERE e.Salary > 15000
+ORDER BY e.DepartmentID ASC
