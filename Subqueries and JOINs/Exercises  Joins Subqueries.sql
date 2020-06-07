@@ -36,3 +36,11 @@ JOIN Departments AS d ON d.DepartmentID = e.DepartmentID
 WHERE e.HireDate > DATEPART(YEAR, '1999-01-01') 
 AND d.Name IN ('Finance', 'Sales')
 ORDER BY HireDate
+
+-- 7.Employees with Project
+SELECT TOP(5) e.EmployeeID, e.FirstName, p.Name AS [ProjectName] 
+FROM Employees AS e
+JOIN EmployeesProjects AS ep ON ep.EmployeeID = e.EmployeeID
+JOIN Projects AS p ON p.ProjectID = ep.ProjectID
+WHERE p.StartDate > DATEPART(YEAR, '2002-08-13') AND p.EndDate IS NULL
+ORDER BY e.EmployeeID ASC
