@@ -55,3 +55,10 @@ FROM Employees AS e
 LEFT JOIN EmployeesProjects AS ep ON ep.EmployeeID = e.EmployeeID
 LEFT JOIN Projects AS p ON p.ProjectID = ep.ProjectID
 WHERE ep.EmployeeID = 24
+
+--9. Employee Manager
+SELECT e.EmployeeID, e.FirstName, e.ManagerID, e1.FirstName AS [ManagerName] 
+FROM Employees AS e
+JOIN Employees AS e1 ON e1.EmployeeID = e.ManagerID 
+WHERE e.ManagerID IN (3, 7)
+ORDER BY EmployeeID ASC
