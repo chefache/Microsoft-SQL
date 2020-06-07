@@ -70,3 +70,14 @@ FROM Employees AS e
 LEFT JOIN Employees AS e1 ON e.ManagerID = e1.EmployeeID
 JOIN Departments AS d ON e.DepartmentID = d.DepartmentID
 ORDER BY e.EmployeeID
+
+-- 11. Min Average Salary
+SELECT  MIN(AverageSalary)
+    FROM
+	(
+         SELECT DepartmentID, AVG(Salary) AS AverageSalary
+         FROM Employees
+         GROUP BY DepartmentID
+	)
+    AS AvgSalaryQue
+		
