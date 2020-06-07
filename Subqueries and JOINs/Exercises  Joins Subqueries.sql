@@ -28,3 +28,11 @@ LEFT JOIN EmployeesProjects AS ep ON ep.EmployeeID = e.EmployeeID
 LEFT JOIN Projects AS p ON p.ProjectID = ep.ProjectID
 WHERE ep.ProjectID IS NULL
 ORDER BY e.EmployeeID ASC
+
+-- 6.Employees Hired After
+SELECT FirstName, LastName, HireDate, d.Name
+FROM Employees AS e
+JOIN Departments AS d ON d.DepartmentID = e.DepartmentID
+WHERE e.HireDate > DATEPART(YEAR, '1999-01-01') 
+AND d.Name IN ('Finance', 'Sales')
+ORDER BY HireDate
