@@ -62,3 +62,11 @@ FROM Employees AS e
 JOIN Employees AS e1 ON e1.EmployeeID = e.ManagerID 
 WHERE e.ManagerID IN (3, 7)
 ORDER BY EmployeeID ASC
+
+--10. Employee Summary
+SELECT TOP(50) e.EmployeeID, CONCAT(e.FirstName, ' ', e.LastName) AS [EmployeeName],
+CONCAT(e1.FirstName, ' ', e1.LastName) AS [ManagerName], d.[Name] AS DepartmentName
+FROM Employees AS e
+LEFT JOIN Employees AS e1 ON e.ManagerID = e1.EmployeeID
+JOIN Departments AS d ON e.DepartmentID = d.DepartmentID
+ORDER BY e.EmployeeID
