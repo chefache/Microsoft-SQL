@@ -44,3 +44,14 @@ JOIN EmployeesProjects AS ep ON ep.EmployeeID = e.EmployeeID
 JOIN Projects AS p ON p.ProjectID = ep.ProjectID
 WHERE p.StartDate > DATEPART(YEAR, '2002-08-13') AND p.EndDate IS NULL
 ORDER BY e.EmployeeID ASC
+
+-- 8.Employee 24
+SELECT e.EmployeeID, FirstName,
+	CASE
+		WHEN YEAR(p.StartDate) >= 2005 THEN NULL
+		WHEN YEAR(p.StartDate) < 2005 THEN p.Name
+	END
+FROM Employees AS e
+LEFT JOIN EmployeesProjects AS ep ON ep.EmployeeID = e.EmployeeID
+LEFT JOIN Projects AS p ON p.ProjectID = ep.ProjectID
+WHERE ep.EmployeeID = 24
