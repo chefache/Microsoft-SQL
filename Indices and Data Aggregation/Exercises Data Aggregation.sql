@@ -1,4 +1,4 @@
--- 1.Records’ Count
+-- 1.Recordsâ€™ Count
 SELECT COUNT(*) AS [Count]
 FROM WizzardDeposits
 
@@ -89,70 +89,6 @@ SELECT SUM(Difference) FROM
 WHERE [Guest Wizard] IS NOT NULL
 
 USE SoftUni
-
-----11. Departments Total Salaries
---SELECT DepartmentID, SUM(Salary) AS TotalSalary
---FROM Employees
---GROUP BY DepartmentID
---ORDER BY DepartmentID
-
----- 12. Employees Minimum Salaries
---SELECT DepartmentID, MIN(Salary) AS [MinimumSalary]
---FROM Employees
---WHERE HireDate > '2000-01-01'
---GROUP BY DepartmentID
---HAVING DepartmentID IN(2, 5, 7)
-
----- 13. Employees Average Salaries
---SELECT * INTO EmployeesWithHighSalary FROM Employees
---WHERE Salary > 30000
-
---DELETE EmployeesWithHighSalary
---WHERE ManagerID = 42
-
---UPDATE EmployeesWithHighSalary
---SET Salary += 5000
---WHERE DepartmentID = 1
-
---SELECT DepartmentID, AVG(Salary) AS [AverageSalary]
---FROM EmployeesWithHighSalary
---GROUP BY DepartmentID
-
----- 14. Employees Maximum Salaries
---SELECT DepartmentID, MAX(Salary) AS [MaxSalary]
---FROM Employees
---GROUP BY DepartmentID
---HAVING MAX(Salary) < 30000 OR MAX(Salary) > 70000
-
----- 15. Employees Count Salaries
---SELECT COUNT(Salary)
---FROM Employees
---WHERE ManagerID IS NULL
-
----- 16. *3rd Highest Salary
---SELECT DISTINCT DepartmentID, Salary AS [ThirdHighestSalary]
---           FROM
---               (SELECT DepartmentID, Salary, DENSE_RANK() 
---                OVER(PARTITION BY DepartmentID ORDER BY Salary DESC) 
---                AS [SalaryRank]
---                FROM Employees
---			   )AS [RankQuery]
---WHERE SalaryRank = 3
-
----- 17. **Salary Challenge
---SELECT TOP(10)
---       e1.FirstName,
---       e1.LastName,
---       e1.DepartmentID
---       FROM Employees AS e1
---       WHERE e1.Salary > (  
---                          SELECT AVG(Salary) AS [AverageSalary] 
---                          FROM Employees AS e2
---						  WHERE e2.DepartmentID = e1.DepartmentID
---                          GROUP BY DepartmentID
---			             )
---ORDER BY DepartmentID 
-
 
 
 
