@@ -138,3 +138,17 @@ SELECT DISTINCT DepartmentID, Salary AS [ThirdHighestSalary]
                 FROM Employees
 			   )AS [RankQuery]
 WHERE SalaryRank = 3
+
+-- 17. **Salary Challenge
+SELECT TOP(10)
+       e1.FirstName,
+       e1.LastName,
+       e1.DepartmentID
+       FROM Employees AS e1
+       WHERE e1.Salary > (  
+                          SELECT AVG(Salary) AS [AverageSalary] 
+                          FROM Employees AS e2
+						  WHERE e2.DepartmentID = e1.DepartmentID
+                          GROUP BY DepartmentID
+			             )
+ORDER BY DepartmentID 
