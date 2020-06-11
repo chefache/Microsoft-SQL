@@ -128,3 +128,13 @@ HAVING MAX(Salary) < 30000 OR MAX(Salary) > 70000
 SELECT COUNT(Salary)
 FROM Employees
 WHERE ManagerID IS NULL
+
+-- 16. *3rd Highest Salary
+SELECT DISTINCT DepartmentID, Salary AS [ThirdHighestSalary]
+           FROM
+               (SELECT DepartmentID, Salary, DENSE_RANK() 
+                OVER(PARTITION BY DepartmentID ORDER BY Salary DESC) 
+                AS [SalaryRank]
+                FROM Employees
+			   )AS [RankQuery]
+WHERE SalaryRank = 3
