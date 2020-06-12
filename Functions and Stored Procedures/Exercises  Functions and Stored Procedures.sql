@@ -17,3 +17,15 @@ WHERE e.Salary >= @chaeckAmount
 END
 
 EXEC usp_GetEmployeesSalaryAboveNumber 48100
+
+
+-- 3. Town Names Starting With
+CREATE PROC usp_GetTownsStartingWith (@string NVARCHAR(50))
+AS
+BEGIN
+SELECT Name
+FROM Towns AS t
+WHERE t.Name LIKE @string + '%'
+END
+
+EXEC usp_GetTownsStartingWith 'b'
