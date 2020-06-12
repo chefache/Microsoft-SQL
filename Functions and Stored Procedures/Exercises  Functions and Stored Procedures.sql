@@ -77,5 +77,30 @@ BEGIN
 	FROM Employees AS e
 	WHERE dbo.ufn_GetSalaryLevel(e.Salary) = @salaryLevel
 END
-
 EXEC usp_EmployeesBySalaryLevel 'high'						   
+
+-- 7. Define Function
+CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(50), @word NVARCHAR(50))
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @matchCount INT = 0;
+	DECLARE @i INT = 1; 
+
+	WHILE(@i <= LEN(@word))
+	 BEGIN
+	  DECLARE @currChar CHAR = SUBSTRING(@word, @i, 1);
+	  DECLARE @charIndex INT = CHARINDEX(@currChar, @setOFletters)
+
+	  IF(@charIndex = 0)
+	  BEGIN
+	   RETURN 0;
+	  END
+
+	  SET @i = @i + 1;
+	  
+	 END
+	 RETURN 1;
+END
+
+SELECT dbo.ufn_IsWordComprised('oistmiahf','Sofia')				    
