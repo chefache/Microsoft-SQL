@@ -29,3 +29,16 @@ WHERE t.Name LIKE @string + '%'
 END
 
 EXEC usp_GetTownsStartingWith 'b'
+
+-- 4.Employees from Town
+CREATE PROC usp_GetEmployeesFromTown(@townName NVARCHAR(50))
+AS
+BEGIN
+SELECT e.FirstName AS [First Name], e.LastName AS [Last Name]
+FROM Employees AS e
+JOIN Addresses AS a ON a.AddressID = e.AddressID
+JOIN Towns AS t ON t.TownID = a.TownID
+WHERE t.Name = @townName
+END
+
+EXEC usp_GetEmployeesFromTown 'Sofia'
