@@ -153,3 +153,18 @@ BEGIN
 	SELECT CONCAT(FirstName, ' ', LastName) 
 	AS [Full Name]  FROM AccountHolders
 END			
+
+-- 10.	People with Balance Higher Than
+CREATE PROCEDURE usp_GetHoldersWithBalanceHigherThan(@amount DECIMAL(14,4))
+AS
+BEGIN
+
+   SELECT FirstName AS [First Name], LastName AS [Last Name]
+   FROM Accounts AS a
+   JOIN AccountHolders AS ah ON a.AccountHolderId = ah.Id
+   GROUP BY FirstName, LastName 
+   HAVING SUM(Balance) > @amount
+   ORDER BY FirstName, LastName
+END
+
+EXEC usp_GetHoldersWithBalanceHigherThan 1000000			
