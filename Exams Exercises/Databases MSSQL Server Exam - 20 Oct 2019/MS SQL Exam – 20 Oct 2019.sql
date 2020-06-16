@@ -1,5 +1,6 @@
 CREATE DATABASE [Service]
 
+-- Section 1. DDL 
 CREATE TABLE [Users](
 [Id] INT PRIMARY KEY IDENTITY,
 [Username] NVARCHAR(30) UNIQUE NOT NULL,
@@ -48,6 +49,7 @@ CREATE TABLE [Reports](
 [EmployeeId] INT FOREIGN KEY REFERENCES Employees(Id)
 )
 
+-- 2. Insert
 INSERT INTO Employees(FirstName, LastName, Birthdate, DepartmentId)
 	VALUES
 	('Marlo', 'O''Malley', '1958-9-21', 1),
@@ -64,10 +66,11 @@ INSERT INTO Reports(CategoryId, StatusId, OpenDate, CloseDate, [Description], Us
 			(4, 3, '2017-07-03', '2017-07-06', 'Cut off streetlight on Str.11', 1, 1)
 
 
+-- 3. Update
 UPDATE Reports
 SET CloseDate = GETDATE()
 WHERE CloseDate IS NULL
 
-
+--4. Delete
 DELETE Reports
 WHERE StatusId = 4
