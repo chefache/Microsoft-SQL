@@ -88,3 +88,12 @@ SELECT [Description], c.[Name] AS [CategoryName] FROM Reports AS r
 JOIN Categories AS c ON c.Id = r.CategoryId
 WHERE CategoryId IS NOT NULL
 ORDER BY [Description] ASC, c.[Name] ASC
+
+-- 7. Most Reported Category
+SELECT u.Username, c.[Name] FROM Users AS u
+JOIN Reports AS r ON r.UserId = u.Id
+JOIN Categories AS c ON c.Id = r.CategoryId
+WHERE DATEPART(MONTH, u.Birthdate) = DATEPART(MONTH, r.OpenDate)
+AND
+DATEPART(DAY, u.Birthdate) = DATEPART(DAY, r.OpenDate)
+ORDER BY u.Username ASC, c.[Name] ASC
