@@ -82,3 +82,9 @@ ORDER BY DATEPART(YEAR, OpenDate) ASC,
 DATEPART(MONTH, OpenDate) ASC, 
 DATEPART(DAY, OpenDate) ASC, 
 [Description] ASC 
+
+-- 6. Reports & Categories
+SELECT [Description], c.[Name] AS [CategoryName] FROM Reports AS r
+JOIN Categories AS c ON c.Id = r.CategoryId
+WHERE CategoryId IS NOT NULL
+ORDER BY [Description] ASC, c.[Name] ASC
