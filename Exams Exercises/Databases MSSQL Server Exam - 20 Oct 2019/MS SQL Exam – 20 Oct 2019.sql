@@ -74,3 +74,11 @@ WHERE CloseDate IS NULL
 --4. Delete
 DELETE Reports
 WHERE StatusId = 4
+
+-- 5. Unassigned Reports
+SELECT [Description], FORMAT(OpenDate, 'dd-MM-yyyy') AS [OpenDate] FROM Reports
+WHERE EmployeeId IS NULL
+ORDER BY DATEPART(YEAR, OpenDate) ASC, 
+DATEPART(MONTH, OpenDate) ASC, 
+DATEPART(DAY, OpenDate) ASC, 
+[Description] ASC 
