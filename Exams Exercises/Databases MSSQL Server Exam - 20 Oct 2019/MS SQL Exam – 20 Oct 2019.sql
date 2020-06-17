@@ -97,3 +97,15 @@ WHERE DATEPART(MONTH, u.Birthdate) = DATEPART(MONTH, r.OpenDate)
 AND
 DATEPART(DAY, u.Birthdate) = DATEPART(DAY, r.OpenDate)
 ORDER BY u.Username ASC, c.[Name] ASC
+
+-- 8.Birthday Report
+
+-- 9.Users per Employee 
+SELECT FullName, COUNT(UserId)  AS UserCount
+          FROM (SELECT CONCAT(e.FirstName, ' ', e.LastName) AS [FullName],
+		             r.UserId
+                     FROM Employees AS e
+                     LEFT JOIN Reports AS r ON r.EmployeeId = e.Id 
+			   ) AS FullNameQuery
+GROUP BY FullName
+ORDER BY UserCount DESC, FullName ASC
